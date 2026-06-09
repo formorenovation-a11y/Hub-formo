@@ -4,413 +4,574 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Formo Hub</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg:       #191816;
-    --bg2:      #201e1b;
-    --bg3:      #252220;
-    --gold:     #C9A96E;
-    --gold-dim: #8a6e44;
-    --cream:    #F8F4EF;
-    --muted:    #7a7570;
-    --border:   rgba(201,169,110,0.15);
-    --border-hover: rgba(201,169,110,0.45);
-    --internal: #2a6496;
-    --internal-dim: rgba(42,100,150,0.12);
-    --client:   #3d7a5c;
-    --client-dim: rgba(61,122,92,0.12);
-    --error:    #c0392b;
+    --bg:        #0f0f0f;
+    --bg2:       #1a1a1a;
+    --bg3:       #222222;
+    --bg4:       #2a2a2a;
+    --gold:      #C9A96E;
+    --gold2:     #e8c98a;
+    --cream:     #f0ece6;
+    --muted:     #888888;
+    --muted2:    #555555;
+    --border:    #2e2e2e;
+    --border2:   #3a3a3a;
+    --blue:      #3b82f6;
+    --blue-dim:  rgba(59,130,246,0.1);
+    --green:     #22c55e;
+    --green-dim: rgba(34,197,94,0.1);
+    --radius:    10px;
   }
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   body {
     background: var(--bg);
     color: var(--cream);
-    font-family: 'Jost', sans-serif;
+    font-family: 'Inter', sans-serif;
     min-height: 100vh;
-    display: flex;
-    flex-direction: column;
   }
 
-  /* ── LOGIN SCREEN ── */
+  /* ══ LOGIN ══ */
   #login-screen {
-    flex: 1;
+    min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 24px;
+    background: var(--bg);
   }
   .login-box {
     width: 100%;
-    max-width: 380px;
+    max-width: 400px;
     background: var(--bg2);
     border: 1px solid var(--border);
-    border-radius: 4px;
-    padding: 44px 36px 36px;
+    border-radius: 16px;
+    padding: 48px 40px 40px;
+  }
+  .login-logo {
     display: flex;
-    flex-direction: column;
-    gap: 28px;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 32px;
   }
-  .login-brand h1 {
-    font-family: 'Cormorant Garamond', serif;
-    font-weight: 300;
-    font-size: 2rem;
-    letter-spacing: 0.14em;
-    color: var(--gold);
-    text-transform: uppercase;
-    text-align: center;
+  .login-logo .icon {
+    width: 44px; height: 44px;
+    background: var(--gold);
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.2rem;
   }
-  .login-brand p {
-    font-size: 0.6rem;
-    letter-spacing: 0.22em;
+  .login-logo .text-main {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--cream);
+    letter-spacing: 0.02em;
+  }
+  .login-logo .text-sub {
+    font-size: 0.65rem;
     color: var(--muted);
+    letter-spacing: 0.08em;
     text-transform: uppercase;
-    text-align: center;
-    margin-top: 6px;
+    margin-top: 1px;
   }
-  .login-fields {
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
-  }
-  .field-label {
-    font-size: 0.62rem;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--muted);
+  .login-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--cream);
     margin-bottom: 6px;
-    display: block;
   }
-  .login-fields input {
+  .login-subtitle {
+    font-size: 0.78rem;
+    color: var(--muted);
+    margin-bottom: 28px;
+  }
+  .field-group { margin-bottom: 16px; }
+  .field-group label {
+    display: block;
+    font-size: 0.72rem;
+    font-weight: 500;
+    color: var(--muted);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .field-group input {
     width: 100%;
     background: var(--bg3);
-    border: 1px solid var(--border);
-    border-radius: 3px;
-    padding: 12px 14px;
+    border: 1px solid var(--border2);
+    border-radius: 8px;
+    padding: 13px 16px;
     color: var(--cream);
-    font-family: 'Jost', sans-serif;
+    font-family: 'Inter', sans-serif;
     font-size: 0.9rem;
     outline: none;
-    transition: border-color 0.2s;
+    transition: border-color 0.2s, box-shadow 0.2s;
   }
-  .login-fields input:focus {
-    border-color: var(--gold-dim);
+  .field-group input:focus {
+    border-color: var(--gold);
+    box-shadow: 0 0 0 3px rgba(201,169,110,0.12);
   }
   .login-btn {
     width: 100%;
+    margin-top: 8px;
     background: var(--gold);
-    color: var(--bg);
+    color: #0f0f0f;
     border: none;
-    border-radius: 3px;
+    border-radius: 8px;
     padding: 14px;
-    font-family: 'Jost', sans-serif;
-    font-size: 0.72rem;
-    font-weight: 600;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
     cursor: pointer;
-    transition: opacity 0.2s;
+    transition: background 0.2s, opacity 0.2s;
   }
-  .login-btn:hover { opacity: 0.85; }
+  .login-btn:hover   { background: var(--gold2); }
   .login-btn:disabled { opacity: 0.5; cursor: not-allowed; }
   #login-error {
-    font-size: 0.72rem;
-    color: #e74c3c;
+    font-size: 0.75rem;
+    color: #f87171;
     text-align: center;
+    margin-top: 12px;
     min-height: 18px;
   }
-  .login-footer {
-    font-size: 0.58rem;
-    letter-spacing: 0.14em;
-    color: var(--muted);
-    text-transform: uppercase;
-    text-align: center;
-  }
 
-  /* ── HUB SCREEN ── */
-  #hub-screen { display: none; flex-direction: column; flex: 1; }
+  /* ══ HUB ══ */
+  #hub-screen { display: none; min-height: 100vh; flex-direction: column; }
 
-  header {
-    padding: 28px 40px 20px;
+  /* Header */
+  .hub-header {
+    background: var(--bg2);
     border-bottom: 1px solid var(--border);
+    padding: 0 28px;
+    height: 64px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 16px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
   }
-  .logo-area h1 {
-    font-family: 'Cormorant Garamond', serif;
-    font-weight: 300;
-    font-size: clamp(1.4rem, 3vw, 2rem);
-    letter-spacing: 0.12em;
-    color: var(--gold);
-    text-transform: uppercase;
+  .hub-logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
   }
-  .logo-area p {
-    font-size: 0.62rem;
-    letter-spacing: 0.2em;
+  .hub-logo .icon {
+    width: 36px; height: 36px;
+    background: var(--gold);
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1rem;
+    flex-shrink: 0;
+  }
+  .hub-logo .name {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--cream);
+  }
+  .hub-logo .divider {
+    width: 1px; height: 20px;
+    background: var(--border2);
+    margin: 0 4px;
+  }
+  .hub-logo .section {
+    font-size: 0.72rem;
     color: var(--muted);
+    font-weight: 500;
+    letter-spacing: 0.06em;
     text-transform: uppercase;
-    margin-top: 3px;
   }
   .header-right {
     display: flex;
     align-items: center;
-    gap: 14px;
+    gap: 12px;
   }
-  #user-email {
-    font-size: 0.65rem;
+  .user-pill {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--bg3);
+    border: 1px solid var(--border2);
+    border-radius: 20px;
+    padding: 6px 14px 6px 8px;
+  }
+  .user-avatar {
+    width: 26px; height: 26px;
+    background: var(--gold);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: #0f0f0f;
+  }
+  #user-email-display {
+    font-size: 0.75rem;
     color: var(--muted);
-    letter-spacing: 0.06em;
+    max-width: 180px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
   .logout-btn {
-    font-size: 0.6rem;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
+    background: var(--bg3);
+    border: 1px solid var(--border2);
+    border-radius: 8px;
+    padding: 7px 14px;
     color: var(--muted);
-    background: none;
-    border: 1px solid var(--border);
-    padding: 5px 12px;
-    border-radius: 2px;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 500;
     cursor: pointer;
-    font-family: 'Jost', sans-serif;
     transition: color 0.2s, border-color 0.2s;
   }
-  .logout-btn:hover { color: var(--cream); border-color: var(--muted); }
+  .logout-btn:hover { color: var(--cream); border-color: var(--muted2); }
 
-  main {
+  /* Main */
+  .hub-main {
     flex: 1;
-    padding: 40px 40px 60px;
-    max-width: 1100px;
+    padding: 36px 28px 60px;
+    max-width: 1140px;
     width: 100%;
     margin: 0 auto;
   }
 
-  .section-label {
+  /* Section header */
+  .section-header {
     display: flex;
     align-items: center;
-    gap: 14px;
-    margin-bottom: 20px;
+    gap: 10px;
+    margin-bottom: 18px;
   }
-  .section-label .dot {
+  .section-dot {
     width: 8px; height: 8px;
-    border-radius: 50%; flex-shrink: 0;
+    border-radius: 50%;
+    flex-shrink: 0;
   }
-  .section-label .dot.internal { background: var(--internal); }
-  .section-label .dot.client   { background: var(--client); }
-  .section-label h2 {
-    font-family: 'Jost', sans-serif;
-    font-weight: 500;
+  .section-dot.internal { background: var(--blue); }
+  .section-dot.client   { background: var(--green); }
+  .section-title {
     font-size: 0.65rem;
-    letter-spacing: 0.28em;
+    font-weight: 600;
+    letter-spacing: 0.2em;
     text-transform: uppercase;
     color: var(--muted);
-    white-space: nowrap;
   }
-  .section-label::after {
-    content: '';
+  .section-line {
     flex: 1;
     height: 1px;
     background: var(--border);
   }
+  .section-count {
+    font-size: 0.62rem;
+    font-weight: 600;
+    color: var(--muted2);
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 2px 9px;
+  }
 
-  .grid {
+  /* Grid */
+  .cards-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-    gap: 12px;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 14px;
     margin-bottom: 44px;
   }
 
+  /* Card */
   .card {
     background: var(--bg2);
     border: 1px solid var(--border);
-    border-radius: 4px;
-    padding: 22px 22px 18px;
+    border-radius: var(--radius);
+    padding: 22px;
     text-decoration: none;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 12px;
+    transition: border-color 0.2s, transform 0.15s, box-shadow 0.2s;
     position: relative;
     overflow: hidden;
-    transition: border-color 0.2s, background 0.2s, transform 0.15s;
-    cursor: pointer;
   }
-  .card::before {
+  .card::after {
     content: '';
     position: absolute;
-    top: 0; left: 0;
-    width: 3px; height: 100%;
+    inset: 0;
+    border-radius: var(--radius);
+    opacity: 0;
     transition: opacity 0.2s;
-    opacity: 0.5;
   }
-  .card.internal::before { background: var(--internal); }
-  .card.client::before   { background: var(--client); }
-  .card:hover { border-color: var(--border-hover); transform: translateY(-2px); }
-  .card.internal:hover { background: var(--internal-dim); }
-  .card.client:hover   { background: var(--client-dim); }
-  .card:hover::before  { opacity: 1; }
+  .card.internal::after { background: var(--blue-dim); }
+  .card.client::after   { background: var(--green-dim); }
+  .card:hover {
+    border-color: var(--border2);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+  }
+  .card:hover::after { opacity: 1; }
+  .card:hover .card-arrow { opacity: 1; transform: translate(2px, -2px); }
 
-  .card-icon  { font-size: 1.3rem; line-height: 1; }
+  .card-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+  }
+  .card-icon-wrap {
+    width: 42px; height: 42px;
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.1rem;
+    flex-shrink: 0;
+  }
+  .card.internal .card-icon-wrap { background: var(--blue-dim); }
+  .card.client   .card-icon-wrap { background: var(--green-dim); }
+
+  .card-arrow {
+    font-size: 0.8rem;
+    color: var(--muted2);
+    opacity: 0;
+    transition: opacity 0.2s, transform 0.2s;
+    position: relative;
+    z-index: 1;
+  }
+
+  .card-body { position: relative; z-index: 1; }
   .card-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.05rem;
-    font-weight: 400;
+    font-size: 0.95rem;
+    font-weight: 600;
     color: var(--cream);
-    letter-spacing: 0.03em;
+    margin-bottom: 6px;
+    letter-spacing: 0.01em;
   }
   .card-desc {
-    font-size: 0.72rem;
+    font-size: 0.75rem;
     color: var(--muted);
-    line-height: 1.5;
-    font-weight: 300;
+    line-height: 1.6;
+    font-weight: 400;
+  }
+
+  .card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: auto;
+    position: relative;
+    z-index: 1;
   }
   .card-tag {
-    margin-top: auto;
-    font-size: 0.58rem;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    font-weight: 600;
-    padding: 3px 8px;
-    border-radius: 2px;
-    align-self: flex-start;
-  }
-  .card.internal .card-tag { color: #5ba3d9; background: rgba(42,100,150,0.2); }
-  .card.client   .card-tag { color: #5db88a; background: rgba(61,122,92,0.2); }
-
-  footer {
-    text-align: center;
-    padding: 18px 40px;
-    border-top: 1px solid var(--border);
     font-size: 0.6rem;
-    letter-spacing: 0.18em;
+    font-weight: 600;
+    letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: var(--muted);
+    padding: 3px 9px;
+    border-radius: 6px;
   }
-  footer span { color: var(--gold-dim); }
+  .card.internal .card-tag { color: #60a5fa; background: rgba(59,130,246,0.15); }
+  .card.client   .card-tag { color: #4ade80; background: rgba(34,197,94,0.15); }
 
-  @media (max-width: 600px) {
-    header { padding: 20px 20px 16px; }
-    main   { padding: 28px 20px 48px; }
-    .grid  { grid-template-columns: 1fr; gap: 10px; }
-    #user-email { display: none; }
-    .login-box { padding: 32px 24px 28px; }
+  .card-status {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 0.62rem;
+    color: var(--muted2);
+  }
+  .status-dot {
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    background: var(--green);
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50%       { opacity: 0.4; }
+  }
+
+  /* Footer */
+  .hub-footer {
+    text-align: center;
+    padding: 20px 28px;
+    border-top: 1px solid var(--border);
+    font-size: 0.62rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted2);
+  }
+  .hub-footer span { color: var(--gold); }
+
+  /* Responsive */
+  @media (max-width: 640px) {
+    .hub-header   { padding: 0 16px; }
+    .hub-main     { padding: 24px 16px 48px; }
+    .cards-grid   { grid-template-columns: 1fr; gap: 10px; }
+    #user-email-display { display: none; }
+    .login-box    { padding: 36px 24px 30px; }
+    .hub-logo .divider,
+    .hub-logo .section { display: none; }
   }
 </style>
 </head>
 <body>
 
-<!-- ══ LOGIN SCREEN ══ -->
+<!-- ══ LOGIN ══ -->
 <div id="login-screen">
   <div class="login-box">
-    <div class="login-brand">
-      <h1>Formo Hub</h1>
-      <p>Formo Renovation LLC &nbsp;·&nbsp; Nashville, TN</p>
-    </div>
-    <div class="login-fields">
+    <div class="login-logo">
+      <div class="icon">🏠</div>
       <div>
-        <label class="field-label" for="email">Email</label>
-        <input type="email" id="email" placeholder="tu@formorenovation.com" autocomplete="email" />
-      </div>
-      <div>
-        <label class="field-label" for="password">Contraseña</label>
-        <input type="password" id="password" placeholder="••••••••" autocomplete="current-password" />
+        <div class="text-main">FORMO</div>
+        <div class="text-sub">Renovation LLC</div>
       </div>
     </div>
-    <div>
-      <button class="login-btn" id="login-btn" onclick="doLogin()">Ingresar</button>
-      <div id="login-error"></div>
+    <div class="login-title">Welcome back</div>
+    <div class="login-subtitle">Sign in to access Formo Hub</div>
+    <div class="field-group">
+      <label for="email">Email</label>
+      <input type="email" id="email" placeholder="you@formorenovation.com" autocomplete="email" />
     </div>
-    <div class="login-footer">Acceso exclusivo · Personal autorizado</div>
+    <div class="field-group">
+      <label for="password">Password</label>
+      <input type="password" id="password" placeholder="••••••••" autocomplete="current-password" />
+    </div>
+    <button class="login-btn" id="login-btn" onclick="doLogin()">Sign In</button>
+    <div id="login-error"></div>
   </div>
 </div>
 
-<!-- ══ HUB SCREEN ══ -->
+<!-- ══ HUB ══ -->
 <div id="hub-screen">
-  <header>
-    <div class="logo-area">
-      <h1>Formo Hub</h1>
-      <p>Formo Renovation LLC &nbsp;·&nbsp; Tools &amp; Portals</p>
+
+  <header class="hub-header">
+    <div class="hub-logo">
+      <div class="icon">🏠</div>
+      <span class="name">FORMO HUB</span>
+      <div class="divider"></div>
+      <span class="section">Nashville, TN</span>
     </div>
     <div class="header-right">
-      <span id="user-email"></span>
-      <button class="logout-btn" onclick="doLogout()">Cerrar sesión</button>
+      <div class="user-pill">
+        <div class="user-avatar" id="user-avatar">F</div>
+        <span id="user-email-display"></span>
+      </div>
+      <button class="logout-btn" onclick="doLogout()">Sign Out</button>
     </div>
   </header>
 
-  <main>
+  <main class="hub-main">
+
     <!-- INTERNAL -->
-    <div class="section-label">
-      <div class="dot internal"></div>
-      <h2>Internal &mdash; Formo Team</h2>
+    <div class="section-header">
+      <div class="section-dot internal"></div>
+      <span class="section-title">Internal — Formo Team</span>
+      <div class="section-line"></div>
+      <span class="section-count">3 tools</span>
     </div>
-    <div class="grid">
+
+    <div class="cards-grid">
+
       <a class="card internal" href="https://formo-project-manager.onrender.com" target="_blank">
-        <div class="card-icon">📋</div>
-        <div class="card-title">Project Manager</div>
-        <div class="card-desc">Projects, crew scheduling, payroll, subcontractors, finance &amp; KPI panel.</div>
-        <div class="card-tag">Internal</div>
+        <div class="card-top">
+          <div class="card-icon-wrap">📋</div>
+          <span class="card-arrow">↗</span>
+        </div>
+        <div class="card-body">
+          <div class="card-title">Project Manager</div>
+          <div class="card-desc">Projects, crew scheduling, payroll, subcontractors, finance & KPI panel.</div>
+        </div>
+        <div class="card-footer">
+          <span class="card-tag">Internal</span>
+          <span class="card-status"><span class="status-dot"></span>Live</span>
+        </div>
       </a>
+
       <a class="card internal" href="https://formo-quotes.onrender.com" target="_blank">
-        <div class="card-icon">💰</div>
-        <div class="card-title">SOW Estimator</div>
-        <div class="card-desc">Scope of work + cost estimates by category, profit markup, photo grid.</div>
-        <div class="card-tag">Internal</div>
+        <div class="card-top">
+          <div class="card-icon-wrap">💰</div>
+          <span class="card-arrow">↗</span>
+        </div>
+        <div class="card-body">
+          <div class="card-title">SOW Estimator</div>
+          <div class="card-desc">Scope of work + cost estimates by category, profit markup, photo grid.</div>
+        </div>
+        <div class="card-footer">
+          <span class="card-tag">Internal</span>
+          <span class="card-status"><span class="status-dot"></span>Live</span>
+        </div>
       </a>
-      <a class="card internal" href="#" target="_blank">
-        <div class="card-icon">🔗</div>
-        <div class="card-title">SOW Platform</div>
-        <div class="card-desc">CompanyCam → Claude AI SOW drafting → branded HTML proposal. 3-step workflow.</div>
-        <div class="card-tag">Internal</div>
+
+      <a class="card internal" href="https://formo-schedule-1.onrender.com" target="_blank">
+        <div class="card-top">
+          <div class="card-icon-wrap">📅</div>
+          <span class="card-arrow">↗</span>
+        </div>
+        <div class="card-body">
+          <div class="card-title">Schedule Generator</div>
+          <div class="card-desc">AI-powered Gantt chart generator. Branded downloadable HTML schedules for clients.</div>
+        </div>
+        <div class="card-footer">
+          <span class="card-tag">Internal</span>
+          <span class="card-status"><span class="status-dot"></span>Live</span>
+        </div>
       </a>
-      <a class="card internal" href="#" target="_blank">
-        <div class="card-icon">📅</div>
-        <div class="card-title">Schedule Generator</div>
-        <div class="card-desc">AI Gantt chart from scope-of-work input. Downloadable branded HTML.</div>
-        <div class="card-tag">Internal</div>
-      </a>
-      <a class="card internal" href="#" target="_blank">
-        <div class="card-icon">📸</div>
-        <div class="card-title">CompanyCam Dashboard</div>
-        <div class="card-desc">Project sync, SOW generation, bilingual ES/EN, alert detection.</div>
-        <div class="card-tag">Internal</div>
-      </a>
+
     </div>
 
     <!-- CLIENT -->
-    <div class="section-label">
-      <div class="dot client"></div>
-      <h2>External &mdash; Client Portals</h2>
+    <div class="section-header">
+      <div class="section-dot client"></div>
+      <span class="section-title">External — Client Portals</span>
+      <div class="section-line"></div>
+      <span class="section-count">2 portals</span>
     </div>
-    <div class="grid">
-      <a class="card client" href="https://formorenovationfinal.netlify.app" target="_blank">
-        <div class="card-icon">🌐</div>
-        <div class="card-title">Formo Website</div>
-        <div class="card-desc">Public-facing company website with services, portfolio &amp; contact.</div>
-        <div class="card-tag">Public</div>
+
+    <div class="cards-grid">
+
+      <a class="card client" href="https://formorenovation.com" target="_blank">
+        <div class="card-top">
+          <div class="card-icon-wrap">🌐</div>
+          <span class="card-arrow">↗</span>
+        </div>
+        <div class="card-body">
+          <div class="card-title">Formo Website</div>
+          <div class="card-desc">Public-facing company website. Services, portfolio, contact & client info.</div>
+        </div>
+        <div class="card-footer">
+          <span class="card-tag">Public</span>
+          <span class="card-status"><span class="status-dot"></span>Live</span>
+        </div>
       </a>
-      <a class="card client" href="#" target="_blank">
-        <div class="card-icon">📄</div>
-        <div class="card-title">Proposal Studio</div>
-        <div class="card-desc">AI-powered proposals from PDF estimates. Client-ready branded output.</div>
-        <div class="card-tag">Client-facing</div>
+
+      <a class="card client" href="https://formo-proposal.onrender.com" target="_blank">
+        <div class="card-top">
+          <div class="card-icon-wrap">📄</div>
+          <span class="card-arrow">↗</span>
+        </div>
+        <div class="card-body">
+          <div class="card-title">Proposal Studio</div>
+          <div class="card-desc">AI-powered proposals from PDF estimates. Branded client-ready output with engagement tracking.</div>
+        </div>
+        <div class="card-footer">
+          <span class="card-tag">Client-facing</span>
+          <span class="card-status"><span class="status-dot"></span>Live</span>
+        </div>
       </a>
-      <a class="card client" href="https://formo-report-generatorv1.onrender.com" target="_blank">
-        <div class="card-icon">📊</div>
-        <div class="card-title">Report Generator</div>
-        <div class="card-desc">Before &amp; after renovation reports. Client and internal versions.</div>
-        <div class="card-tag">Client-facing</div>
-      </a>
+
     </div>
+
   </main>
 
-  <footer>
-    <span>Formo Renovation LLC</span> &nbsp;·&nbsp; Built on quality, driven by integrity. &nbsp;·&nbsp; Nashville, TN
+  <footer class="hub-footer">
+    <span>Formo Renovation LLC</span> &nbsp;·&nbsp; Built on quality, driven by integrity &nbsp;·&nbsp; Nashville, TN
   </footer>
+
 </div>
 
 <!-- ══ FIREBASE ══ -->
 <script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-app.js";
+  import { initializeApp }
+    from "https://www.gstatic.com/firebasejs/11.0.0/firebase-app.js";
   import { getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged }
     from "https://www.gstatic.com/firebasejs/11.0.0/firebase-auth.js";
 
@@ -426,55 +587,57 @@
   const app  = initializeApp(firebaseConfig);
   const auth = getAuth(app);
 
-  // ── Auth state ──
   onAuthStateChanged(auth, user => {
-    if (user) {
-      showHub(user.email);
-    } else {
-      showLogin();
-    }
+    if (user) showHub(user.email);
+    else       showLogin();
   });
 
-  // ── Login ──
   window.doLogin = async () => {
     const email    = document.getElementById('email').value.trim();
     const password = document.getElementById('password').value;
     const btn      = document.getElementById('login-btn');
     const errEl    = document.getElementById('login-error');
 
+    if (!email || !password) {
+      errEl.textContent = 'Please enter your email and password.';
+      return;
+    }
     errEl.textContent = '';
     btn.disabled = true;
-    btn.textContent = 'Verificando...';
+    btn.textContent = 'Signing in...';
 
     try {
       await signInWithEmailAndPassword(auth, email, password);
-    } catch (e) {
-      errEl.textContent = 'Email o contraseña incorrectos.';
+    } catch {
+      errEl.textContent = 'Incorrect email or password.';
       btn.disabled = false;
-      btn.textContent = 'Ingresar';
+      btn.textContent = 'Sign In';
     }
   };
 
-  // ── Logout ──
   window.doLogout = async () => {
     await signOut(auth);
   };
 
-  // ── Enter key on password ──
   document.getElementById('password').addEventListener('keydown', e => {
     if (e.key === 'Enter') window.doLogin();
   });
 
   function showHub(email) {
     document.getElementById('login-screen').style.display = 'none';
-    document.getElementById('hub-screen').style.display   = 'flex';
-    document.getElementById('user-email').textContent     = email;
+    const hub = document.getElementById('hub-screen');
+    hub.style.display = 'flex';
+    document.getElementById('user-email-display').textContent = email;
+    const initial = email.charAt(0).toUpperCase();
+    document.getElementById('user-avatar').textContent = initial;
   }
+
   function showLogin() {
     document.getElementById('login-screen').style.display = 'flex';
     document.getElementById('hub-screen').style.display   = 'none';
-    document.getElementById('login-btn').disabled         = false;
-    document.getElementById('login-btn').textContent      = 'Ingresar';
+    const btn = document.getElementById('login-btn');
+    btn.disabled = false;
+    btn.textContent = 'Sign In';
   }
 </script>
 
